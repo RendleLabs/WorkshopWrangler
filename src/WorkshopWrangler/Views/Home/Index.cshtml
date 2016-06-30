@@ -39,7 +39,6 @@
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis malesuada turpis ac facilisis dignissim. Ut pellentesque aliquet diam, vel finibus tortor feugiat at. Suspendisse lorem dui, vehicula auctor tristique in, finibus nec orci. Nunc semper urna nulla, in faucibus magna suscipit eget. Sed commodo neque feugiat, vehicula quam in, ullamcorper lorem. Ut gravida dolor id porta vulputate. Proin blandit ligula justo, quis tristique libero pellentesque nec. Pellentesque posuere libero dapibus est congue tempus.
                 </p>
             </div>
-            </div>
         </div>
     </div>
 </div>
@@ -49,18 +48,39 @@
         <div class="row">
             <h1>Interested?</h1>
         </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="name" class="control-label">Name:</label>
-                    <input type="text" class="form-control input-block">
+        <form id="register-form" method="post" asp-controller="Home" asp-action="Register">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="name" class="control-label">Name:</label>
+                        <input id="name" name="name" type="text" class="form-control input-block">
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="control-label">Email:</label>
+                        <input id="email" name="email" type="email" class="form-control input-block">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="notes">Notes:</label>
+                        <textarea id="notes" name="notes" class="form-control input-block"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-success">I'm interested</button>
                 </div>
-                <div class="form-group">
-                    <label for="email" class="control-label">Email:</label>
-                    <input type="email" class="form-control input-block">
+                <div class="col-md-4">
+                    @foreach (var date in Model.AvailableDates)
+                    {
+                        <div>
+                            <div class="onoffswitch">
+                                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+                                <label class="onoffswitch-label" for="myonoffswitch">
+                                    <span class="onoffswitch-inner"></span>
+                                    <span class="onoffswitch-switch"></span>
+                                </label>
+                            </div>
+                            <span class="onoffswitch-text">@date.ToString("dd") / @date.AddDays(1).ToString("dd MMMM yyyy")</span>
+                        </div>
+                    }
                 </div>
             </div>
-            <div class="col-md-6"></div>
-        </div>
+        </form>
     </div>
 </div>

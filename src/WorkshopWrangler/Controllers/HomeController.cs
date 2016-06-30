@@ -8,6 +8,8 @@ using WorkshopWrangler.ViewModels;
 
 namespace WorkshopWrangler.Controllers
 {
+    using Models;
+
     public class HomeController : Controller
     {
         private readonly IDates _dates;
@@ -24,6 +26,11 @@ namespace WorkshopWrangler.Controllers
                 AvailableDates = _dates.GetAvailableDates().ToArray()
             };
             return View(model);
+        }
+
+        public IActionResult Register(Interest interest)
+        {
+            return RedirectToAction("Index");
         }
 
         public IActionResult Error()
